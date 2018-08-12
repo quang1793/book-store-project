@@ -1,9 +1,0 @@
-<div class="row">
-  {% for sach in DSSachCungLoai %}
-  <div class="col-md-2" style="padding-left: 0px; padding-right: 0px;">
-    <a href="{{'/sach/'+(sach.id|string())}}" class="thumbnail" style="border:none">
-      <img src="{{url_for('static', filename='image/'+sach.hinh)}}" alt="{{sach.ten_sach}}">
-    </a>
-  </div>
-  {% endfor %}
-</div>
