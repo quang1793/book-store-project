@@ -1,1 +1,1 @@
-web: gunicorn runserver:app
+web: gunicorn ung_dung/__init__:app
