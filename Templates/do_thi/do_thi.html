@@ -1,0 +1,114 @@
+
+{% extends "Layout.html" %}
+
+{% block banner %}
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li class="active">Thống kê</li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
+
+<!-- {% block callaction %}
+
+
+{% endblock %} -->
+{% block content %}
+<style>
+.thongtin{
+    font-size: 30px;
+    padding: 10px 0px 10px 40px;
+    margin: 100px;
+
+   background-color:aqua;
+    font-weight: bold;
+}
+</style>
+
+
+     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+       
+     <form method="post" action="/">
+         <div class="CUA_SO_2" style="margin:200px">
+            <p class="thongtin"> BIỂU ĐỒ THỂ HIỆN DOANH THU CỬA HÀNG</p>
+             <div><h3>{{title}}</h3></div>
+             <canvas id="chart" width="1000" height="500"></canvas>
+             <br/>
+              <!-- <button type="button" id="download-pdf" class="btn btn-primary" onclick="downloadPDF()">
+                 Lưu đồ thị PNG</button> -->
+             <script>
+             // line chart data
+             var lineData = {
+                 labels : [
+                 {% for item in labels %}
+                     "{{ item }}",
+                 {% endfor %}
+                 ],
+                 datasets : [{
+                 fillColor: "rgba(151,187,205,0.2)",
+                 strokeColor: "rgb(244, 66, 122)",
+                 pointColor: "rgba(151,187,205,1)",
+                 pointStrokeColor: "#fff",
+                 pointHighlightFill: "#fff",
+                 pointHighlightStroke: "rgba(151,187,205,1)",
+                 bezierCurve : false,
+                 data : [
+                 {% for item in values %}
+                     {{ item }},
+                     {% endfor %}]
+                 }
+                 ]
+             }
+             Chart.defaults.global.animationSteps = 50;
+             Chart.defaults.global.tooltipYPadding = 16;
+             Chart.defaults.global.tooltipCornerRadius = 0;
+             Chart.defaults.global.tooltipTitleFontStyle = "normal";
+             Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+             Chart.defaults.global.animationEasing = "easeOutBounce";
+             Chart.defaults.global.responsive = false;
+             Chart.defaults.global.scaleLineColor = "black";
+             Chart.defaults.global.scaleFontSize = 16;
+             // vẽ line chart trong canvas
+             var mychart = document.getElementById("chart").getContext("2d");
+             steps = 10
+             max = {{ max }}
+             // draw line chart
+             var LineChartDemo = new Chart(mychart).Line(lineData, {
+                 scaleOverride: true,
+                 scaleSteps: steps,
+                 scaleStepWidth: Math.ceil(max / steps),
+                 scaleStartValue: 0,
+                 scaleShowVerticalLines: true,
+                 scaleShowGridLines : true,
+                 barShowStroke : true,
+                 scaleShowLabels: true,
+                 bezierCurve: false,
+             });
+             function downloadPDF() {                             
+                 var canvas = document.getElementById("chart");                
+                 var link = document.createElement('a');
+                 link.download = "ThongKeTiVi2017.png";
+                 link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                 link.click();
+                 alert("Đã lưu đồ thị");
+             }                
+             </script>
+         </div>
+         
+     </form>
+ 
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+         integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+ 
+{% endblock %}
