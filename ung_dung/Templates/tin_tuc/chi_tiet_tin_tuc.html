@@ -1,0 +1,74 @@
+{% extends "Layout.html" %}
+
+{% block banner %}
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li><a href="/tin_tuc">Tin tức</a></li>
+            <li class="active">{{tintuc.tieu_de_tin}}</li>
+
+        </ol>
+    </div>
+</div>
+{% endblock%}
+
+<!-- {% block callaction %}
+
+
+{% endblock %} -->
+{% block content %}
+    <!-- <div class="col-lg-12" id="content">
+        {{Thong_tin_gio_hang}}
+    </div>
+-->
+<style>
+.headerTinTuc{
+    font-size: 30px;
+    color: red;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.tintuc{
+    font-size: 17px;
+    color:black;
+    margin-left: 50px;
+}
+
+.tomtat{
+    font-size: 25px;
+    color:black;
+    
+}
+
+</style>
+
+
+<div class="container">
+    <div class="row">
+        
+    </div>
+    {% if tintuc.trangthai != none %}
+    <div class="col-lg-12" id="content">
+        <div class="container">
+            <h1 class="headerTinTuc">{{tintuc.tieu_de_tin}}</h1>
+            <!-- <p class='tomtat'>Nội dung tóm tắt :</p>
+            <p class="tintuc">      {{tintuc.noi_dung_tom_tat}}</p> -->
+            <p class='tomtat'>Nội dung chi tiết :</p>
+            <div class="tintuc">{{tintuc.noi_dung_chi_tiet | safe}}</div>
+        </div>
+    </div>
+    {% endif %}
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
